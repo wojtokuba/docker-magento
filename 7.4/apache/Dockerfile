@@ -7,7 +7,7 @@ ENV PHP_EXT_XDEBUG_VERSION "2.9.0"
 
 
 RUN build_packages="libpng-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libxslt1-dev libmemcached-dev sendmail-bin sendmail libicu-dev libzip-dev libonig-dev" \
-    && apt-get update && apt-get install -y $build_packages supervisor \
+    && apt-get update && apt-get install -y $build_packages supervisor cron \
     && yes "" | pecl install apcu-$PHP_EXT_APCU_VERSION && docker-php-ext-enable apcu \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
