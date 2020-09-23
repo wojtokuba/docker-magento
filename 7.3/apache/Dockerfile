@@ -20,6 +20,7 @@ RUN build_packages="libpng-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev 
     && docker-php-ext-install xsl \
     && docker-php-ext-install zip \
     && docker-php-ext-install intl \
+    && docker-php-ext-install bcmath \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV ION_CUBE_PHP_VERSION "7.3"
