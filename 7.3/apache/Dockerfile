@@ -39,4 +39,9 @@ RUN a2enmod rewrite headers
 
 COPY magento.conf /etc/apache2/conf-enabled/
 
-CMD ["apache2-foreground"]
+# Supervisor
+RUN mkdir -p /var/log/supervisor
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
+
