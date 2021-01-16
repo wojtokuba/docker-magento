@@ -21,6 +21,7 @@ RUN build_packages="libpng-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev 
     && docker-php-ext-install zip \
     && docker-php-ext-install intl \
     && docker-php-ext-install bcmath \
+    && docker-php-ext-install sockets \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
@@ -33,5 +34,9 @@ COPY magento.conf /etc/apache2/conf-enabled/
 # Supervisor
 RUN mkdir -p /var/log/supervisor
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 CMD ["supervisord", "--nodaemon", "--configuration", "/etc/supervisor/conf.d/supervisord.conf"]
