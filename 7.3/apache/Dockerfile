@@ -4,7 +4,7 @@ MAINTAINER Tomas Gerulaitis <tomas.gerulaitis@meanbee.com>
 ENV PHP_EXT_APCU_VERSION "5.1.18"
 ENV PHP_EXT_MEMCACHED_VERSION "3.1.5"
 ENV PHP_EXT_XDEBUG_VERSION "2.9.0"
-
+ENV COMPOSER_MEMORY_LIMIT=-1
 
 RUN build_packages="libpng-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev libxslt1-dev libmemcached-dev sendmail-bin sendmail libicu-dev libzip-dev" \
     && apt-get update && apt-get install -y $build_packages supervisor cron \
