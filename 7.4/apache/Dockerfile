@@ -23,6 +23,7 @@ RUN build_packages="libpng-dev libfreetype6-dev libjpeg62-turbo-dev libxml2-dev 
     && docker-php-ext-install bcmath \
     && docker-php-ext-install opcache \
     && docker-php-ext-install sockets \
+    && nano
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 
@@ -31,6 +32,7 @@ COPY php.ini /usr/local/etc/php/conf.d/zz-magento.ini
 RUN a2enmod rewrite headers
 
 COPY magento.conf /etc/apache2/conf-enabled/
+COPY apache.conf /etc/apache2/apache.conf
 
 # Supervisor
 RUN mkdir -p /var/log/supervisor
